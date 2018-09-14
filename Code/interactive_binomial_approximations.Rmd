@@ -1,0 +1,47 @@
+---
+title: "Approximation Plots"
+author: "Dustin Pluta"
+date: "September 12, 2018"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+plot_approximations <- function(n, p, xmin = 0, xmax = n) {
+  print(n, p)
+  mu <- n * p
+  sigma <- sqrt(n * p * (1 - p))
+  
+  curve(dbinom(x, n, p), from = 0, to = n, type = "h", lwd = 2, xlim = c(xmin, xmax))
+  curve(dnorm(x, mu, sigma), from = 0, to = n, ty = "l", add = TRUE, col = "blue")
+  curve(dpois(x, mu), from = 0, to = n, ty = "h", add = TRUE, col = "red")
+}
+```
+
+
+```{r, echo=FALSE}
+inputPanel(
+  numericInput("n", label = "n:",
+              min = 0, value = 20, step = 10),
+  sliderInput("p", label = "p:",
+              min = 0, max = 1, value = 0.5, step = 0.01)
+)
+
+renderPlot({
+  n <- as.numeric(input$n)
+  p <- input$p
+  xmin <- 0
+  xmax <- n
+  mu <- n * p
+  sigma <- sqrt(n * p * (1 - p))
+  
+  curve(dbinom(x, n, p), from = 0, to = n, type = "h", lwd = 2, xlim = c(xmin, xmax), n = n + 1)
+  curve(dnorm(x, mu, sigma), from = 0, to = n, ty = "l", add = TRUE, col = "blue")
+  curve(dpois(x, mu), from = 0, to = n, ty = "h", add = TRUE, col = "red", n = n + 1)
+})
+```
+
