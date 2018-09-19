@@ -1,5 +1,5 @@
 ---
-title: "Data_Analysis_Step_by_Step.Rmd"
+title: "Data Analysis Problems"
 author: "Dustin Pluta"
 date: "September 19, 2018"
 output: pdf_document
@@ -62,13 +62,15 @@ head(dat)
 
 5. Construct scatterplots and stratified boxplots for SBC against each of the covariates you will use.
 
-6. Compute the correlation matrix for any continuous variables you will use in the analysis. Do any variables exhibit high correlation?
+6. Construct histograms of SBC stratified by treatment group (DOSE > 0), and by level of DOSE.  Dose the distribution of SBC seem significantly different across dose groups?
 
-7. Did you notice any significant violations of model assumptions?
+7. Compute the correlation matrix for any continuous variables you will use in the analysis. Do any variables exhibit high correlation?
 
-8. Are there obvious outliers or potentially erroneous observations?
+8. Did you notice any significant violations of model assumptions?
 
-9. Are there any transformations we should consider applying to the data?
+9. Are there obvious outliers or potentially erroneous observations?
+
+10. Are there any transformations we should consider applying to the data?
 
 # 3. Model Fitting
 
