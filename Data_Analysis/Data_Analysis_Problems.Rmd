@@ -1,0 +1,126 @@
+---
+title: "Data_Analysis_Step_by_Step.Rmd"
+author: "Dustin Pluta"
+date: "September 19, 2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE)
+library(tidyverse)
+```
+
+# Objectives
+
+1. Is supplementation with beta carotene associated with a time-averaged increase in SBC?  If so, is the effect dose dependent?
+
+2. Is time-averaged SBC associated with time-averaged SVE?
+
+# 0. Hypothesize and Select Model
+
+The variables in the data set are:
+
+- `ptid`: patient id
+- `month`: month of observation
+- `bcarot`: serum beta carotne levels
+- `vite`: serum vitamin E levels
+- `dose`: beta carotene supplement dose
+- `age`: patient age in years
+- `bmi`: patient body mass index
+- `chol`: patient cholesterol
+- `cauc`: time-averaged serum beta carotene area under curve
+- `vauc`: time-averaged serum vitamin E area under curve
+
+1. What is the simplest model to answer the first objective?
+
+2. What is a reasonable target model to answer the first objective? This model should include possible confounders and precision variables as adjustment covariates.  Give a brief justification for your choice of variables to include.
+
+3. What is the simplest model to answer the second objective?
+
+4. What is a reasonable target model to answer the second objective?
+
+# 1. Import and Tidy
+
+1. Read in the data and display the first few rows.
+
+```{r}
+dat <- read_delim("https://raw.githubusercontent.com/dspluta/Stats-Bootcamp/master/rData/bcarotene.txt", delim = " ")
+head(dat)
+```
+
+2. Verify the data is in the correct "tidy" format.
+
+# 2. Exploratory Analysis
+
+1. Identify any missing values in the data.
+
+2. Plot the histogram of the number of observations per subject.  What is the mean number of observations.  Remove any subjects from the data set that have fewer than 3 months of observation following the baseline period (baseline is from 0 - 3 months).
+
+3. Since we will only analyze the time-averaged data, remove repeated rows for each subject and any columns that vary over time.
+
+4. Construct histograms or boxplots of SBC, SVE, and any of the non-categorical covariates you will use in your models.  Construct frequency tables for any categorical variables you will include in your models.  Record any notable observations you make regarding the distributions of the variables.
+
+5. Construct scatterplots and stratified boxplots for SBC against each of the covariates you will use.
+
+6. Compute the correlation matrix for any continuous variables you will use in the analysis. Do any variables exhibit high correlation?
+
+7. Did you notice any significant violations of model assumptions?
+
+8. Are there obvious outliers or potentially erroneous observations?
+
+9. Are there any transformations we should consider applying to the data?
+
+# 3. Model Fitting
+
+1. Fit the simple model for objective (1) and print the summary.
+
+2. Fit the target model for objective (1) and print the summary.
+
+3. Fit the simple model for objective (2) and print the summary.
+
+4. Fit the target model for objective (2) and print the summary.
+
+# 4. Diagnostics
+
+1. Examine the diagnostic plots for each of the models you fit above.  Comment on any issues or potential problems you see.  
+
+2. Compare the adjusted $R^2$ for the simple and target models for each of the two objectives.  Do the more complicated models seem to yield significantly better fits than the simple models?
+
+3. Do any of the models seem to be invalid due to violation of assumptions?  If so, discard these models for the remainder of the analysis.
+
+# 5. Test and Interpret
+
+1. Perform hypothesis tests and construct confidence intervals to answer the questions of interest for objective (1).
+
+2. Perform hypothesis tests and construct confidence intervals to answer the questions of interest for objective (2).
+
+3. Produce a plot to help convey the main message of your results for objective (1).
+
+4. Produce a plot to help convey the main message of your results for objective (2).
+
+5. Give practical interpretations of your coefficient estimates related to the questions of interest.  Use plain English, and explain the results in a way that would be meaningful to a clinician.  Avoid causal language.
+
+# 6. Post-hoc Analysis
+
+1. Based on the results of the analysis, can you propse a better model?  Fit a few other candidate models and use goodness-of-fit measures (e.g. adjusted-$R^2$) to compare to the simple and target models.
+
+2. Were there any outliers or highly influential observations?  Do the results change substantially if we remove these observations?
+
+# 7. Report
+
+1. Compile the above work into a concise and insightful report.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
